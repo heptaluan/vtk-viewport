@@ -85,7 +85,7 @@ class VTKCrosshairsExample extends Component {
       mapper.setMaximumSamplesPerRay(2000);
       rgbTransferFunction.setRange(range[0], range[1]);
       ctVol.setMapper(mapper);
-
+      debugger
       this.setState({
         volumes: [ctVol],
       });
@@ -96,6 +96,7 @@ class VTKCrosshairsExample extends Component {
   }
 
   storeApi = viewportIndex => {
+    
     return api => {
       this.apis[viewportIndex] = api;
 
@@ -141,6 +142,7 @@ class VTKCrosshairsExample extends Component {
     const value = evt.target.value;
     const valueInMM = value / 10;
     const apis = this.apis;
+    debugger
 
     apis.forEach(api => {
       const renderWindow = api.genericRenderWindow.getRenderWindow();
@@ -174,7 +176,7 @@ class VTKCrosshairsExample extends Component {
     return (
       <>
         <div className="row">
-          <div className="col-xs-4">
+          {/* <div className="col-xs-4">
             <p>
               This example demonstrates how to use the Crosshairs manipulator.
             </p>
@@ -187,7 +189,7 @@ class VTKCrosshairsExample extends Component {
               max="5000"
               onChange={this.handleSlabThicknessChange.bind(this)}
             />
-          </div>
+          </div> */}
           <div className="col-xs-4">
             <p>Click bellow to toggle crosshairs on/off.</p>
             <button onClick={this.toggleCrosshairs}>
@@ -197,22 +199,22 @@ class VTKCrosshairsExample extends Component {
             </button>
           </div>
         </div>
-        <div className="row">
-          <div className="col-sm-4">
+        <div className="box" style={{ display: 'flex'}}>
+          <div className='box-list' style={{width: '33%'}}>
             <View2D
               volumes={this.state.volumes}
               onCreated={this.storeApi(0)}
               orientation={{ sliceNormal: [0, 1, 0], viewUp: [0, 0, 1] }}
             />
           </div>
-          <div className="col-sm-4">
+          <div className='box-list' style={{width: '33%', margin: '0 1%'}}>
             <View2D
               volumes={this.state.volumes}
               onCreated={this.storeApi(1)}
               orientation={{ sliceNormal: [1, 0, 0], viewUp: [0, 0, 1] }}
             />
           </div>
-          <div className="col-sm-4">
+          <div className='box-list' style={{width: '33%'}}>
             <View2D
               volumes={this.state.volumes}
               onCreated={this.storeApi(2)}
