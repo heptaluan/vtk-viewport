@@ -16,15 +16,15 @@ import {
   _getVolumeCenterIpp,
 } from './util';
 
-async function init() {
+async function createImageDataObject() {
   const seriesImageIds = [
-    'wadouri://im.ananpan.com/omics/image/QDS/2022/9/HuJianQuan/20221014111252/ds_AAAAAAQV_20221014111306.dcm',
-    'wadouri://im.ananpan.com/omics/image/QDS/2022/9/HuJianQuan/20221014111252/ds_AAAAAAQU_20221014111303.dcm',
-    'wadouri://im.ananpan.com/omics/image/QDS/2022/9/HuJianQuan/20221014111252/ds_AAAAAAQT_20221014111304.dcm',
+    'wadouri://im.ananpan.com/omics/image/QDS/2022/9/TangZongLin/20221016235825/ds_AAAAAAOE_20221016235836.dcm',
+    'wadouri://im.ananpan.com/omics/image/QDS/2022/9/TangZongLin/20221016235825/ds_AAAAAAOD_20221016235826.dcm',
+    'wadouri://im.ananpan.com/omics/image/QDS/2022/9/TangZongLin/20221016235825/ds_AAAAAAOC_20221016235827.dcm',
+    'wadouri://im.ananpan.com/omics/image/QDS/2022/9/TangZongLin/20221016235825/ds_AAAAAAOB_20221016235836.dcm',
   ];
 
   const metaDataMap = await _getSeriesMetaDataMap(seriesImageIds);
-  debugger;
 
   const {
     dimensions,
@@ -62,7 +62,6 @@ class VTKCrosshairsExample extends Component {
   async componentDidMount() {
     this.apis = [];
 
-    const ctImageDataObject = await init();
     // const imageIds = await createStudyImageIds(url, searchInstanceOptions);
 
     // let ctImageIds = imageIds.filter(imageId =>
@@ -70,6 +69,8 @@ class VTKCrosshairsExample extends Component {
     // );
 
     // const ctImageDataObject = loadDataset(ctImageIds, 'ctDisplaySet');
+
+    const ctImageDataObject = await createImageDataObject();
 
     const onAllPixelDataInsertedCallback = () => {
       const ctImageData = ctImageDataObject.vtkImageData;
@@ -175,30 +176,9 @@ class VTKCrosshairsExample extends Component {
 
     return (
       <>
-        <div className="row">
-          <div className="col-xs-4">
-            <p>
-              This example demonstrates how to use the Crosshairs manipulator.
-            </p>
-            <label htmlFor="set-slab-thickness">SlabThickness: </label>
-            <input
-              id="set-slab-thickness"
-              type="range"
-              name="points"
-              min="1"
-              max="5000"
-              onChange={this.handleSlabThicknessChange.bind(this)}
-            />
-          </div>
-          <div className="col-xs-4">
-            <p>Click bellow to toggle crosshairs on/off.</p>
-            <button onClick={this.toggleCrosshairs}>
-              {this.state.displayCrosshairs
-                ? 'Hide Crosshairs'
-                : 'Show Crosshairs'}
-            </button>
-          </div>
-        </div>
+        <button onClick={this.toggleCrosshairs}>
+          {this.state.displayCrosshairs ? 'Hide Crosshairs' : 'Show Crosshairs'}
+        </button>
         <div className="row">
           <div className="col-sm-4">
             <View2D
