@@ -10,7 +10,6 @@ export async function _getSeriesMetaDataMap(seriesImageIds) {
       'imagePlaneModule',
       imageId
     );
-
     metaDataMap.set(imageId, metaData);
   }
 
