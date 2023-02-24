@@ -4,21 +4,27 @@ import {
   View2D,
   vtkInteractorStyleMPRCrosshairs,
   vtkSVGCrosshairsWidget,
-} from '../src/index';
+} from '@vtk-viewport';
 import vtkVolume from 'vtk.js/Sources/Rendering/Core/Volume';
 import vtkVolumeMapper from 'vtk.js/Sources/Rendering/Core/VolumeMapper';
 import './initCornerstone';
 
-import { _getSeriesMetaDataMap, _calculateDimensions, _createVtkVolume, _getVolumeCenterIpp } from './util'
-
+import {
+  _getSeriesMetaDataMap,
+  _calculateDimensions,
+  _createVtkVolume,
+  _getVolumeCenterIpp,
+} from './util';
 
 async function init() {
   const seriesImageIds = [
     'wadouri://im.ananpan.com/omics/image/QDS/2022/9/HuJianQuan/20221014111252/ds_AAAAAAQV_20221014111306.dcm',
     'wadouri://im.ananpan.com/omics/image/QDS/2022/9/HuJianQuan/20221014111252/ds_AAAAAAQU_20221014111303.dcm',
+    'wadouri://im.ananpan.com/omics/image/QDS/2022/9/HuJianQuan/20221014111252/ds_AAAAAAQT_20221014111304.dcm',
   ];
 
   const metaDataMap = await _getSeriesMetaDataMap(seriesImageIds);
+  debugger;
 
   const {
     dimensions,
@@ -27,10 +33,6 @@ async function init() {
     spacing,
     zAxis,
   } = _calculateDimensions(metaDataMap);
-
-  // if (multiComponent) {
-  //   throw new Error('Multi component image not supported by this plugin.');
-  // }
 
   const imageData = await _createVtkVolume(
     seriesImageIds,
@@ -85,7 +87,7 @@ class VTKCrosshairsExample extends Component {
       mapper.setMaximumSamplesPerRay(2000);
       rgbTransferFunction.setRange(range[0], range[1]);
       ctVol.setMapper(mapper);
-      debugger
+
       this.setState({
         volumes: [ctVol],
       });
@@ -96,7 +98,6 @@ class VTKCrosshairsExample extends Component {
   }
 
   storeApi = viewportIndex => {
-    
     return api => {
       this.apis[viewportIndex] = api;
 
@@ -142,7 +143,6 @@ class VTKCrosshairsExample extends Component {
     const value = evt.target.value;
     const valueInMM = value / 10;
     const apis = this.apis;
-    debugger
 
     apis.forEach(api => {
       const renderWindow = api.genericRenderWindow.getRenderWindow();
@@ -176,7 +176,7 @@ class VTKCrosshairsExample extends Component {
     return (
       <>
         <div className="row">
-          {/* <div className="col-xs-4">
+          <div className="col-xs-4">
             <p>
               This example demonstrates how to use the Crosshairs manipulator.
             </p>
@@ -189,7 +189,7 @@ class VTKCrosshairsExample extends Component {
               max="5000"
               onChange={this.handleSlabThicknessChange.bind(this)}
             />
-          </div> */}
+          </div>
           <div className="col-xs-4">
             <p>Click bellow to toggle crosshairs on/off.</p>
             <button onClick={this.toggleCrosshairs}>
@@ -199,22 +199,22 @@ class VTKCrosshairsExample extends Component {
             </button>
           </div>
         </div>
-        <div className="box" style={{ display: 'flex'}}>
-          <div className='box-list' style={{width: '33%'}}>
+        <div className="row">
+          <div className="col-sm-4">
             <View2D
               volumes={this.state.volumes}
               onCreated={this.storeApi(0)}
               orientation={{ sliceNormal: [0, 1, 0], viewUp: [0, 0, 1] }}
             />
           </div>
-          <div className='box-list' style={{width: '33%', margin: '0 1%'}}>
+          <div className="col-sm-4">
             <View2D
               volumes={this.state.volumes}
               onCreated={this.storeApi(1)}
               orientation={{ sliceNormal: [1, 0, 0], viewUp: [0, 0, 1] }}
             />
           </div>
-          <div className='box-list' style={{width: '33%'}}>
+          <div className="col-sm-4">
             <View2D
               volumes={this.state.volumes}
               onCreated={this.storeApi(2)}
