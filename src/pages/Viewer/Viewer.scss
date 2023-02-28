@@ -1,0 +1,145 @@
+.viewer-box,
+.viewer-review-box {
+  width: 100%;
+  height: 100%;
+
+  .viewer-center-box {
+    position: relative;
+    display: flex;
+    flex: 1;
+    height: calc(100% - 50px);
+    flex-flow: row nowrap;
+    align-items: stretch;
+  }
+
+  .error-tips {
+    width: 100%;
+    height: calc(100% - 35px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 35px;
+    background: #000000;
+    color: #fff;
+    z-index: 9;
+  }
+}
+
+.viewer-detail-box {
+  width: 100%;
+  height: 100%;
+
+  .viewer-center-box {
+    position: relative;
+    display: flex;
+    flex: 1;
+    height: 100%;
+    flex-flow: row nowrap;
+    align-items: stretch;
+  }
+
+  .error-tips {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000000;
+    color: #fff;
+    z-index: 9;
+  }
+
+  .header-box,
+  .middle-side-panel-box,
+  .tool-bar-box {
+    display: none;
+  }
+}
+
+.viewer-image-box {
+  width: 100%;
+  height: 100%;
+
+  .viewer-center-box {
+    position: relative;
+    display: flex;
+    flex: 1;
+    height: 100%;
+    flex-flow: row nowrap;
+    align-items: stretch;
+  }
+
+  .error-tips {
+    width: 100%;
+    height: calc(100% - 35px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 35px;
+    background: #000000;
+    color: #fff;
+    z-index: 9;
+  }
+
+  .middle-side-panel-box {
+    display: none;
+  }
+}
+
+.load-image-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-style: normal;
+}
+
+.show-button {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+
+  .infor-detail {
+    margin-left: 15px;
+    font-size: 14px;
+  }
+}
+
+.middle-box-wrap-show {
+  position: absolute;
+  // transition: all 0.3s;
+  transform: translateX(-150%);
+}
+
+.middle-box-wrap-hide {
+  position: relative;
+  // transition: all 0.3s;
+  transform: translateX(0);
+}
+
+.risk-modal .ant-modal-footer button:first-child {
+  display: none;
+}
+
+.risk-modal .ant-modal-close {
+  display: none;
+}
+
+.risk-box {
+  margin-top: 15px;
+}
