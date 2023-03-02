@@ -1,0 +1,11 @@
+.mpr-viewer-wrap {
+  .mpr-viewer {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .mpr-box {
+    width: 500px;
+    height: 500px;
+  }
+}
