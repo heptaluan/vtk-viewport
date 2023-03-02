@@ -1,6 +1,6 @@
 import createImageIdsAndCacheMetaData from './createImageIdsAndCacheMetaData';
 import wadoURICreateImageIds from './WADOURICreateImageIds';
-import initDemo from './initDemo';
+import initConfig from './initConfig';
 import setCtTransferFunctionForVolumeActor, {
   ctVoiRange,
 } from './setCtTransferFunctionForVolumeActor';
@@ -16,7 +16,7 @@ import camera from './camera';
 export {
   createImageIdsAndCacheMetaData,
   wadoURICreateImageIds,
-  initDemo,
+  initConfig,
   setTitleAndDescription,
   addButtonToToolbar,
   addDropdownToToolbar,

@@ -5,20 +5,17 @@ import './assets/scss/reset.scss'
 import './assets/scss/common.scss'
 import {
   RenderingEngine,
-  Types,
   Enums,
   setVolumesForViewports,
   volumeLoader,
   getRenderingEngine,
 } from '@cornerstonejs/core'
 import {
-  initDemo,
-  createImageIdsAndCacheMetaData,
+  initConfig,
   setCtTransferFunctionForVolumeActor,
   addDropdownToToolbar,
 } from './CrossHairs/helpers'
 import * as cornerstoneTools from '@cornerstonejs/tools'
-import './initCornerstone';
 
 const App = () => {
   const { ToolGroupManager, Enums: csToolsEnums, CrosshairsTool, StackScrollMouseWheelTool } = cornerstoneTools
@@ -61,19 +58,6 @@ const App = () => {
     viewportGrid.appendChild(element3)
 
     content.appendChild(viewportGrid)
-
-    const instructions = document.createElement('p')
-    instructions.innerText = `
-      Basic controls:
-      - Click/Drag anywhere in the viewport to move the center of the crosshairs.
-      - Drag a reference line to move it, scrolling the other views.
-
-      Advanced controls: Hover over a line and find the following two handles:
-      - Square (closest to center): Drag these to change the thickness of the MIP slab in that plane.
-      - Circle (further from center): Drag these to rotate the axes.
-      `
-
-    content.append(instructions)
 
     // ============================= //
 
@@ -160,23 +144,19 @@ const App = () => {
       },
     })
 
-    /**
-     * Runs the demo
-     */
     async function run() {
-      // Init Cornerstone and related libraries
-      await initDemo()
 
-      // Add tools to Cornerstone3D
+      await initConfig()
+
       cornerstoneTools.addTool(StackScrollMouseWheelTool)
       cornerstoneTools.addTool(CrosshairsTool)
 
-      // Get Cornerstone imageIds for the source data and fetch metadata into RAM
-      const imageIds = await createImageIdsAndCacheMetaData({
-        StudyInstanceUID: '1.3.6.1.4.1.14519.5.2.1.7009.2403.334240657131972136850343327463',
-        SeriesInstanceUID: '1.3.6.1.4.1.14519.5.2.1.7009.2403.226151125820845824875394858561',
-        wadoRsRoot: 'https://d3t6nz73ql33tx.cloudfront.net/dicomweb',
-      })
+      const imageIds = [
+        'wadouri://im.ananpan.com/omics/image/QDS/2022/9/TangZongLin/20221016235825/ds_AAAAAAOE_20221016235836.dcm',
+        'wadouri://im.ananpan.com/omics/image/QDS/2022/9/TangZongLin/20221016235825/ds_AAAAAAOD_20221016235826.dcm',
+        'wadouri://im.ananpan.com/omics/image/QDS/2022/9/TangZongLin/20221016235825/ds_AAAAAAOC_20221016235827.dcm',
+        'wadouri://im.ananpan.com/omics/image/QDS/2022/9/TangZongLin/20221016235825/ds_AAAAAAOB_20221016235836.dcm',
+      ]
 
       // Define a volume in memory
       const volume = await volumeLoader.createAndCacheVolume(volumeId, {
