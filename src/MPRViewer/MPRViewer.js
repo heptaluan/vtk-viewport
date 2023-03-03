@@ -12,7 +12,6 @@ const MPRViewer = props => {
   const { MouseBindings } = csToolsEnums
   const { ViewportType } = Enums
 
-  const contentRef = useRef()
   const div1Ref = useRef()
   const div2Ref = useRef()
   const div3Ref = useRef()
@@ -153,7 +152,7 @@ const MPRViewer = props => {
 
   return (
     <div className="mpr-viewer-wrap">
-      <div className="mpr-viewer" ref={contentRef} id="content">
+      <div className="mpr-viewer">
         <div className="mpr-box" ref={div1Ref}></div>
         <div className="mpr-box" ref={div2Ref}></div>
         <div className="mpr-box" ref={div3Ref}></div>
