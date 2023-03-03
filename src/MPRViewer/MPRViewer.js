@@ -1,20 +1,19 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './MPRViewer.scss'
-
 import { RenderingEngine, Enums, setVolumesForViewports, volumeLoader } from '@cornerstonejs/core'
-
 import { initConfig, setCtTransferFunctionForVolumeActor } from './helpers'
-
 import * as cornerstoneTools from '@cornerstonejs/tools'
 
 const MPRViewer = props => {
-  const { ToolGroupManager, Enums: csToolsEnums, CrosshairsTool, StackScrollMouseWheelTool } = cornerstoneTools
+  const { ToolGroupManager, Enums: csToolsEnums, CrosshairsTool, StackScrollMouseWheelTool, RectangleROITool } = cornerstoneTools
   const { MouseBindings } = csToolsEnums
   const { ViewportType } = Enums
 
   const div1Ref = useRef()
   const div2Ref = useRef()
   const div3Ref = useRef()
+
+  const [toolGroup, setToolGroup] = useState(null)
 
   useEffect(() => {
     initConfig()
@@ -69,6 +68,7 @@ const MPRViewer = props => {
 
     cornerstoneTools.addTool(StackScrollMouseWheelTool)
     cornerstoneTools.addTool(CrosshairsTool)
+    cornerstoneTools.addTool(RectangleROITool)
 
     // 缓存 dicom
     const volume = await volumeLoader.createAndCacheVolume(volumeId, {
@@ -127,10 +127,12 @@ const MPRViewer = props => {
 
     // 加载十字工具
     const toolGroup = ToolGroupManager.createToolGroup(toolGroupId)
+    setToolGroup(toolGroup)
     toolGroup.addViewport(viewportId1, renderingEngineId)
     toolGroup.addViewport(viewportId2, renderingEngineId)
     toolGroup.addViewport(viewportId3, renderingEngineId)
     toolGroup.addTool(StackScrollMouseWheelTool.toolName)
+    toolGroup.addTool(RectangleROITool.toolName)
 
     toolGroup.addTool(CrosshairsTool.toolName, {
       getReferenceLineColor,
@@ -139,15 +141,37 @@ const MPRViewer = props => {
       getReferenceLineSlabThicknessControlsOn,
     })
 
-    toolGroup.setToolActive(CrosshairsTool.toolName, {
-      bindings: [{ mouseButton: MouseBindings.Primary }],
-    })
+    // toolGroup.setToolActive(CrosshairsTool.toolName, {
+    //   bindings: [{ mouseButton: MouseBindings.Primary }],
+    // })
 
     // 添加滚动工具
     toolGroup.setToolActive(StackScrollMouseWheelTool.toolName)
 
     // 最终渲染
     renderingEngine.renderViewports([viewportId1, viewportId2, viewportId3])
+  }
+
+  const handleClicked1 = () => {
+    toolGroup.setToolActive(RectangleROITool.toolName, {
+      bindings: [{ mouseButton: MouseBindings.Primary }],
+    })
+  }
+
+  const handleClicked2 = () => {
+    toolGroup.setToolPassive(RectangleROITool.toolName, {
+      bindings: [{ mouseButton: MouseBindings.Primary }],
+    })
+  }
+
+  const handleClicked3 = () => {
+    toolGroup.setToolActive(CrosshairsTool.toolName, {
+      bindings: [{ mouseButton: MouseBindings.Primary }],
+    })
+  }
+
+  const handleClicked4 = () => {
+    console.log(ToolGroupManager.getToolGroupsWithToolName(RectangleROITool.toolName))
   }
 
   return (
@@ -157,6 +181,10 @@ const MPRViewer = props => {
         <div className="mpr-box" ref={div2Ref}></div>
         <div className="mpr-box" ref={div3Ref}></div>
       </div>
+      <button onClick={e => handleClicked1()}>111</button>
+      <button onClick={e => handleClicked2()}>222</button>
+      <button onClick={e => handleClicked3()}>333</button>
+      <button onClick={e => handleClicked4()}>444</button>
     </div>
   )
 }
