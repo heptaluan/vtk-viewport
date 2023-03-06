@@ -1,0 +1,307 @@
+.middle-side-panel-box {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  max-width: 460px;
+  min-width: 460px;
+  padding-bottom: 12px;
+  // border-left: 1px solid #ccc;
+
+  .nodule-list-box {
+    height: 320px;
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    flex: 4 1;
+
+    .title {
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .table-box {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #0e2b40;
+      overflow: hidden;
+
+      .table-title {
+        display: flex;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border: 1px solid transparent;
+        padding: 0 10px 0 5px;
+
+        .icon,
+        .more {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .index,
+        .type {
+          flex: 2;
+        }
+
+        .num,
+        .risk,
+        .suggest,
+        .soak,
+        .action {
+          flex: 1;
+        }
+      }
+
+      .table-content {
+        // display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: overlay;
+        min-height: 535px;
+
+        .table-item {
+          user-select: none;
+          display: flex;
+          height: 25px;
+          line-height: 25px;
+          text-align: center;
+          border: 1px solid transparent;
+          transition: all 0.1s;
+          padding: 0 10px 0 5px;
+          position: relative;
+
+          &.add-item {
+            border-top: 1px solid #ccc;
+            background: #eaeaea;
+          }
+          
+          &.green-item {
+            border: 1px solid #02b91938;
+            background: #02b91938;
+          }
+
+          &.blue-item {
+            border: 1px solid #ff000030;
+            background: #ff000030;
+          }
+
+          &.red-item {
+            border: 1px solid #34c0ff66;
+            background: #34c0ff66;
+          }
+
+          &.add-item:last-child {
+            border-bottom: 1px solid #ccc;
+          }
+
+          &:hover {
+            border: 1px solid #eaeaea;
+            background: #eaeaea;
+
+            .del-tips {
+              display: flex;
+            }
+          }
+        }
+
+        .index,
+        .type {
+          flex: 2;
+        }
+
+        .num,
+        .risk,
+        .suggest,
+        .soak,
+        .action {
+          flex: 1;
+        }
+
+        .risk.edit {
+          color: #ff4d4f;
+        }
+
+        .suggest {
+          max-width: 47px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: normal;
+        }
+
+        .review-state {
+          color: #ff4d4f;
+
+          .review {
+            color: #73d13d;
+          }
+        }
+
+        .del-tips {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          right: 0;
+          top: 0;
+          display: none;
+          align-items: center;
+          justify-content: flex-end;
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+
+  .image-info-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+
+    .title {
+      height: 35px;
+      line-height: 35px;
+    }
+
+    .info-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .report-box {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border: 1px solid #0e2b40;
+
+        .title {
+          display: flex;
+          height: 20px;
+          line-height: 20px;
+          padding: 0 5px;
+        }
+
+        .report-content {
+          flex: 1 1 1px;
+          overflow-y: overlay;
+          word-break: break-all;
+          padding: 5px 18px 0 5px;
+
+          .viewer-item {
+            margin-bottom: 8px;
+            padding: 5px;
+            border: 1px solid transparent;
+            transition: all 0.1s;
+            cursor: default;
+            line-height: 18px;
+
+            span {
+              color: #1890ff;
+            }
+
+            &.item-active {
+              border: 1px solid #ccc;
+              background: #eaeaea;
+            }
+
+            &:hover {
+              border: 1px solid #ccc;
+              background: #eaeaea;
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
+      .suggest-box {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .title {
+          height: 35px;
+          line-height: 35px;
+        }
+
+        .suggest-content {
+          padding-bottom: 40px;
+          flex: 1 1 1px;
+          overflow: hidden;
+
+          .suggest-content-wrap {
+            border: 1px solid #0e2b40;
+            width: 100%;
+            height: 100%;
+            padding: 10px 18px 10px 10px;
+            word-break: break-all;
+            overflow-y: overlay;
+            min-height: 120px;
+
+            .suggest-item {
+              margin-bottom: 10px;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+
+          .save {
+            margin-top: 5px;
+            text-align: right;
+
+            .ant-btn {
+              font-size: 12px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+
+  .button {
+    cursor: pointer;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 12px;
+    transition: all 0.2s;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background: #1890ff;
+      color: #fff;
+    }
+  }
+}
+
+.ant-checkbox-wrapper {
+  justify-content: space-between;
+  flex: 2 !important;
+}
+
+.ant-tag {
+  font-size: 12px !important;
+  margin-right: 0 !important;
+  padding: 0 2px !important;
+  line-height: normal !important;
+  cursor: pointer;
+}

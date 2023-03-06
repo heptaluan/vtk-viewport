@@ -1,0 +1,33 @@
+.add-new-node-box {
+  font-size: 14px;
+
+  .title-box {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .add-box {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    .list-header {
+      margin-bottom: 10px;
+    }
+
+    .list {
+      margin-bottom: 10px;
+
+      .list-title {
+        display: inline-block;
+        min-width: 50px;
+        text-align: right;
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+.nodule-info-box {
+  position: absolute;
+  right: 15px;
+  top: 95px;
+  width: 260px;
+  color: #fff;
+  font-size: 14px;
+
+  .nodule-detail {
+    .list {
+      display: flex;
+      justify-content: space-between;
+      height: 28px;
+      line-height: 28px;
+
+      .ant-radio-wrapper {
+        margin-right: 0;
+      }
+
+      .ant-radio-group {
+        display: flex;
+        align-items: center;
+      }
+
+      .ant-radio-wrapper {
+        color: #fff;
+      }
+
+      .ant-select {
+        margin-top: 2px;
+      }
+
+      &.list-btn-box {
+        margin-top: 3px;
+      }
+
+      .list-btn-group {
+        button {
+          height: 18px;
+          line-height: 16px;
+          padding: 0px 5px;
+          margin-right: 2px;
+        }
+      }
+    }
+
+    .list.adjust {
+      justify-content: flex-end;
+    }
+  }
+
+  .check-group {
+    line-height: 28px;
+
+    .group-wrap {
+      width: 100%;
+      color: #fff;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+
+      .group {
+        padding-right: 4px;
+      }
+    }
+  }
+}
+
+.ant-radio-disabled + span {
+  color: #fff !important;
+}

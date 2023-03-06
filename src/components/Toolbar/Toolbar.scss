@@ -1,0 +1,69 @@
+.tool-bar-box-wrap {
+  display: flex;
+  align-items: center;
+
+  .tool-bar-box {
+    height: 35px;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+
+    & > li {
+      margin-right: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &.active {
+        color: #1890ff;
+      }
+
+      &.filter-active {
+        color: #1890ff;
+      }
+
+      &.hr {
+        width: 5px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        div {
+          width: 1px;
+          height: 100%;
+          background: #44626f;
+        }
+      }
+    }
+  }
+
+  .submit-btn {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+
+    button {
+      margin-right: 10px;
+    }
+
+    .slider-box {
+      width: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+      .ant-slider {
+        width: 50px;
+        margin-right: 5px;
+      }
+
+      .ant-input-number-group-wrapper {
+        width: 70px;
+
+        .ant-input-number-group-addon {
+          padding: 0 5px
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+.header-box {
+  padding: 0 15px;
+  height: 50px;
+  border-bottom: 1px solid #44626f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.ant-image-preview-switch-left,
+.ant-image-preview-switch-right {
+  width: 60px !important;
+  height: 60px !important;
+  background: #d9363e !important;
+
+  .anticon-left,
+  .anticon-right {
+    font-size: 36px !important;
+    color: #fff !important;
+  }
+}
+
+.ant-image-preview-switch-left-disabled, .ant-image-preview-switch-right-disabled {
+  display: none !important;
+}
+
+.export-box {
+  display: flex;
+  align-items: center;
+}
+
+.tips-box {
+  display: inline-block;
+  margin-right: 15px;
+  max-width: 500px;
+
+  .ant-alert {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .ant-alert-message {
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .ant-btn-sm {
+    font-size: 12px;
+    padding: 0px 5px;
+  }
+}
+
+
+.ant-popover-content {
+  .ant-btn-sm {
+    display: none;
+  }
+
+  .ant-btn-primary {
+    display: block;
+  }
+
+  .ant-popover-inner-content {
+    width: 400px;
+  }
+
+  .ant-popover-buttons {
+    display: flex;
+    justify-content: end;
+  }
+
+  .remark-content {
+    word-break: break-all;
+    font-size: 13px;
+  }
+}
